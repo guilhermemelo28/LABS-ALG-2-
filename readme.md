@@ -4,7 +4,7 @@ Repositório para armazenamento das atividades da disciplina de Algoritmos 2.
 
 ## Estrutura
 
-* Lista s
+* Listas obrigatórias e extras
 * Trabalho
 
 ## Autor
