@@ -9,4 +9,4 @@ Repositório para armazenamento das atividades da disciplina de Algoritmos 2.
 
 ## Autor
 
-Guilherme Melo
+Guilherme Moura de Melo Matrícula: 3251BSI008
