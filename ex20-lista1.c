@@ -11,7 +11,7 @@ int ehprimo(int x)
         return 0;
     }
 
-    for (int i = 2; i <= x; i++)
+    for (int i = 2; i < x; i++)
     {
 
         if (x % i == 0)
@@ -26,7 +26,8 @@ int qtdprimo(int n)
 {
     int primo = 0;
 
-    for (int i = 2; i < n; i++)
+    for (int i = 2; i <= 
+        n; i++)
     {
 
         if (ehprimo(i))
