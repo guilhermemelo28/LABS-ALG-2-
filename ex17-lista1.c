@@ -26,8 +26,11 @@ int main()
     printf("Escolha dois numeros:");
     scanf("%d %d", &n1, &n2);
 
+    if ((n1 >= 0) && (n2 >= 0))
+    {
     resposta = soma(n1,n2);
 
     printf("Soma dos numeros inteiros entre %d e %d: %d",n1,n2,resposta);
+    }
     return 0;
 }
