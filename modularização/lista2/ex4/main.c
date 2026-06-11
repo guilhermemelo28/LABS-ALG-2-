@@ -12,6 +12,6 @@ int main()
     printf("Digite sua idade:\n");
     scanf("%d",&idade);
 
-    mostrarPessoa(criarPessoa(nome[50],idade));
+    mostrarPessoa(criarPessoa(nome,idade));
     return 0;
 }

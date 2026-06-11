@@ -4,9 +4,16 @@
     pessoa criarPessoa(char nome[], int idade)
     {
         pessoa p;
-        p.nome[50] = nome[50];
-        p.idade = idade;
-        return p;
+        int i = 0;
+        while(nome[i] != '\0')
+        {
+            p.nome[i] = nome[i];
+            i++;
+        }
+
+        p.nome[i] = '\0'; 
+            p.idade = idade;
+            return p;
     }
 
     void mostrarPessoa(pessoa p)

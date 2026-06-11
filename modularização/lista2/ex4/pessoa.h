@@ -3,7 +3,7 @@ typedef struct {
     int idade;
 } pessoa;
 
-pessoa criarPessoa(char nome[50],int idade);
+pessoa criarPessoa(char nome[],int idade);
 void mostrarPessoa(pessoa p);
 
 
