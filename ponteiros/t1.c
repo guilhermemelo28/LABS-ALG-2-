@@ -22,4 +22,4 @@ void arvore(int *r)
         }
         printf("\n");
     }
-}
+}    
