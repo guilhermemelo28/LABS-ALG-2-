@@ -2,7 +2,7 @@
 #include<windows.h>
 #include<stdlib.h>
 
-void Bubblesort(int vet[],int n);
+void Bubblesort(int *vet,int n);
 void troca(int vet[],int j, int x);
 
 int main()
@@ -48,7 +48,7 @@ int main()
     return 0;
 }
     
-void Bubblesort (int vet[], int n)
+void Bubblesort (int *vet, int n)
 {
     for(int i = 0; i < (n - 1); i++)
     {
