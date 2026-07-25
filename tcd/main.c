@@ -26,7 +26,7 @@
             printf("1- Carregar Arquivo de texto.\n");
             printf("2-Busca Elemento (Linear ou Binario)\n");
             printf("3- Ordenar dados: Insert, Bubble, Selection, Merge, Quick, Extra\n");
-            printf("4- Gerar relatório(Log)\n");
+            printf("4- Gerar relatorio(Log)\n");
             printf("5- Sair\n");
             printf("Digite a opcao\n");
             scanf("%d",&opcao);
@@ -40,7 +40,7 @@
                 resultado = carregar_arquivo(nomearquivo, &vet);
                 if (resultado == -1)
                 {
-                    printf("Arquivo não encontrado! Falha ao carregar o arquivo!\n");
+                    printf("Arquivo nao encontrado! Falha ao carregar o arquivo!\n");
                 }
                 else{
                     printf("Sucesso ao carregar arquivos\n");
@@ -179,7 +179,7 @@
                 }
                 else
                 {
-                    printf("Erro! Nao foi possivel fazer a ordenação, pois nenhum arquivo foi carregado!\n");
+                    printf("Erro! Nao foi possivel fazer a ordenacao, pois nenhum arquivo foi carregado!\n");
                 }
             }
             
