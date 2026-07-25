@@ -1,8 +1,23 @@
+//Arquivo com as funções de ordenação e busca.
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 #include "algoritimos.h"
 
 //ALGORITIMOS DE ORDENAÇÃO:
+
+//Verifica ordenação
+int verificaOrdem(int vet[], int tam){
+    int i, j;
+    for(i = 0; i < (tam - 1) ; i++)
+    {
+            if(vet[i] > vet[ i + 1])
+            {
+                return 0;
+            }     
+    }
+    return 1;
+}
 //QUICKSORT:
 void quicksort(int *vet,int l, int r)
 {
@@ -41,8 +56,8 @@ void mergesort(int *vet,int l, int r)
     {
         int meio = (l + r)/2;
         
-        mergesort(vet,l,meio);//direita
-        mergesort(vet,meio + 1, r); //esquerda
+        mergesort(vet,l,meio);//esquerda
+        mergesort(vet,meio + 1, r); //direita
         
         merge(vet,l,meio,r);
     }
@@ -138,6 +153,14 @@ void selectionsort(int *vet,int tam)
     }
 }
 
+void sort(int *vet){
+
+}
+
+void introsort(int *vet){
+
+}
+
 //Função Usada no: Selection Sort, BubbleSort, e Quicksort
 void troca(int *vet,int j, int x)
 {
@@ -150,9 +173,10 @@ void troca(int *vet,int j, int x)
 
 //ALGORITIMOS DE BUSCA
 
-int buscaLinear(int *vet, int s, int elem)
+//BUSCA LINEAR
+int buscaLinear(int *vet, int tamvetor, int elem)
 {
-    for (int i = 0; i < s; i++)
+    for (int i = 0; i < tamvetor; i++)
     {
         if (elem == vet[i])
         {
@@ -162,3 +186,57 @@ int buscaLinear(int *vet, int s, int elem)
 
     return -1;
 }
+
+
+//BUSCA BINARIA
+
+int buscaBinaria(int *vet, int tamvetor, int elem)
+{
+    int esq = 0;
+    int dir = tamvetor - 1;
+    while( esq <= dir)
+    {
+        int meio = (dir + esq)/2;
+
+        if(vet[meio] == elem )
+        {
+            return meio;
+        }
+
+        if(vet[meio] < elem)
+        {
+            esq = meio + 1;
+        }
+        else
+        {
+            dir = meio - 1;
+        }
+        
+    }
+    return -1;
+}
+
+void registrar_log(const char *nivel, const char *modulo, const char *mensagem) {
+    // Abre o arquivo de texto no modo append (adiciona ao final)
+    FILE *arquivo = fopen("log_sistema.txt", "a");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo de log!\n");
+        return;
+    }
+
+    // 1. Obtém e formata a Data e Hora atual
+    time_t agora;
+    time(&agora);
+    struct tm *info = localtime(&agora);
+    char timestamp[20];
+    strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", info);
+
+    // Grava as informações estritamente de forma ordenada no arquivo de texto
+    // Ordem: DATA/HORA -> [NÍVEL] -> [MÓDULO] -> MENSAGEM
+    fprintf(arquivo, "%s [%s] [%s] %s\n", timestamp, nivel, modulo, mensagem);
+
+    // Fecha o arquivo para garantir a gravação física no disco
+    fclose(arquivo);
+}
+
+

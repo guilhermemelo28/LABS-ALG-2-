@@ -23,28 +23,28 @@ int main()
     return 0;
 }
 
-int buscaBinaria(int vet[], int n, int elem)
-{
-    int esq = 0;
-    int dir = n;
-    while( esq <= dir)
+    int buscaBinaria(int vet[], int n, int elem)
     {
-        int meio = (dir + esq)/2;
+        int esq = 0;
+        int dir = n - 1;
+        while( esq <= dir)
+        {
+            int meio = (dir + esq)/2;
 
-        if(vet[meio] == elem )
-        {
-            return meio;
-        }
+            if(vet[meio] == elem )
+            {
+                return meio;
+            }
 
-        if(vet[meio] < elem)
-        {
-            esq = meio + 1;
+            if(vet[meio] < elem)
+            {
+                esq = meio + 1;
+            }
+            else
+            {
+                dir = meio - 1;
+            }
+            
         }
-        else
-        {
-            dir = meio - 1;
-        }
-        
+        return -1;
     }
-    return -1;
-}

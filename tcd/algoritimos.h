@@ -1,5 +1,11 @@
+//Biblioteca dos algoritimos de busca e ordenação utlizados no TCD
 
 //ALGORITIMOS DE ORDENAÇAO
+
+//Algoritimo para verificar se o vetor esta ordenado
+
+int verificaOrdem(int vet[], int tam);
+
 //quick sort
 void quicksort(int *vet,int l, int r);
 int particiona(int *vet,int l ,int r);
@@ -22,5 +28,8 @@ void troca(int *vet,int j, int x);
 //ALGORITIMOS DE BUSCA
 
 //Busca Linear
-int buscaLinear(int *vet, int s, int elem);
+int buscaLinear(int *vet, int tamvetor, int elem);
+
+//Busca Binaria
+int buscaBinaria(int *vet, int tamvetor, int elem);
 
