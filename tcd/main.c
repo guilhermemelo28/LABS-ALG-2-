@@ -118,61 +118,63 @@ int main()
 
             switch (opOrdena)
             {
-            case 1:
 
+                case 1:
+                
                 break;
-            case 2:
+                case 2:
                 printf("Selecionado: Bubble Sort\n");
                 Bubblesort(vet, tamvetor);
                 printf("Vetor ordenado:\n");
-
+                
                 for (int i = 0; i < tamvetor; i++)
                 {
                     printf("%d\n", vet[i]);
                 }
                 break;
-
-            case 3:
+                
+                case 3:
                 printf("Selecionado: Selection Sort\n");
                 selectionsort(vet, tamvetor);
                 printf("Vetor ordenado:\n");
-
+                
                 for (int i = 0; i < tamvetor; i++)
                 {
                     printf("%d\n", vet[i]);
                 }
                 break;
 
-            case 4:
+                case 4:
                 printf("Selecionado: Merge Sort\n");
                 mergesort(vet, 0, tamvetor - 1);
                 printf("Vetor ordenado:\n");
-
+                
                 for (int i = 0; i < tamvetor; i++)
                 {
                     printf("%d\n", vet[i]);
                 }
                 break;
-
-            case 5:
+                
+                case 5:
                 printf("Selecionado: Quick Sort\n");
 
                 quicksort(vet, 0, tamvetor - 1);
                 printf("Vetor ordenado:\n");
-
+                
                 for (int i = 0; i < tamvetor; i++)
                 {
                     printf("%d\n", vet[i]);
                 }
                 break;
-
-            case 6:
+                
+                case 6:
                 printf("Selecionado Extra: IntroSort\n");
                 break;
                 
+                verificaOrdem(vet, tamvetor) == 1;
             }
 
-            if(verificaOrdem(vet,tamvetor) == 1 )
+            if(opOrdena >= 1 && opOrdena <= 6)
             {
                     printf("Deseja salvar o vetor ordenado em um arquivo separado?\n");
                     printf("1- Sim\n");
