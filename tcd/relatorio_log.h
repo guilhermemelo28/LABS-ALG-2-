@@ -1,0 +1,1 @@
+void registrar_log(const char *nivel, const char *modulo, const char *mensagem);
