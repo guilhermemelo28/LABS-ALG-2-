@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "arquivo.h"
 
 int carregar_arquivo(const char *nome, int **vetor){
@@ -36,4 +37,29 @@ int carregar_arquivo(const char *nome, int **vetor){
     
     fclose(arquivo);
     return i;
+}
+
+int salvar_vetor(char *nomearquivo, int *vet, int tamanho)
+{
+    
+    if(strstr(nomearquivo, ".txt") == NULL)
+    {
+        strcat(nomearquivo, ".txt");
+    }
+
+    FILE *arquivo = fopen(nomearquivo, "w");
+    
+    if (arquivo == NULL)
+    {
+        return -1;
+    }
+
+    for (int i = 0; i < tamanho; i++)
+    {
+        fprintf(arquivo, "%d\n", vet[i]);
+    }
+
+    fclose(arquivo);
+
+    return 0;
 }

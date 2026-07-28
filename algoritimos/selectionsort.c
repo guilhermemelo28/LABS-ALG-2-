@@ -51,7 +51,7 @@ int main()
 
 void selectionsort(int vet[],int tam)
 {
-    for(int i = 0; i < (tam - 1);i++)
+    for(int i = 0; i < tam;i++)
     {
         int min = i;
 
@@ -61,8 +61,8 @@ void selectionsort(int vet[],int tam)
             {
                 min = j;
             }
-            troca(vet,i,min);
         }
+        troca(vet,i,min);
     }
 }
 
