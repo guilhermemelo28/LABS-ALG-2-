@@ -6,6 +6,9 @@
 
 int verificaOrdem(int vet[], int tam);
 
+//insertion sort
+void insertionsort(int *vet, int tam);
+
 //quick sort
 void quicksort(int *vet,int l, int r);
 int particiona(int *vet,int l ,int r);

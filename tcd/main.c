@@ -120,8 +120,16 @@
             {
 
                 case 1:
+                printf("Selecionado: Insertion Sort\n");
+                insertionsort(vet,tamvetor);
+                printf("Vetor ordenado:\n");
                 
+                for (int i = 0; i < tamvetor; i++)
+                {
+                    printf("%d\n", vet[i]);
+                }
                 break;
+                
                 case 2:
                 printf("Selecionado: Bubble Sort\n");
                 Bubblesort(vet, tamvetor);

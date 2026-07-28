@@ -18,6 +18,22 @@ int verificaOrdem(int vet[], int tam){
     }
     return 1;
 }
+//INSERTION SORT
+
+void insertionsort(int *vet,int tamvet)
+{
+    for(int i = 1; i < tamvet; i++)
+    {
+        int key = vet[i];
+        int j = i - 1;
+        while(j>= 0 && vet[j] > key)
+        {
+            vet[j+1] = vet[j];
+            j--;
+        }
+        vet[j+1] = key;
+    }
+}
 //QUICKSORT:
 void quicksort(int *vet,int l, int r)
 {
