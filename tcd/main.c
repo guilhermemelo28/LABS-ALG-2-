@@ -1,9 +1,13 @@
-    #include<stdio.h>
-    #include<stdlib.h>
-    #include"algoritimos.h"
-    #include "arquivo.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "algoritimos.h"
+#include "arquivo.h"
 
+<<<<<<< HEAD
     int main()
+=======
+int main()
+>>>>>>> bf39e24a2f2e50c01bd56f9fc5b8b2651edd6574
 {
     int opcao, opbusca, opOrdena, opSalvar; // Opcao = Menu, OpBusca para escolher entre Busca Linear e Binaria, OpOrdena para escolher um dos algoritimos de ordenacao
     int buscarelemento;
@@ -120,6 +124,7 @@
             {
 
                 case 1:
+<<<<<<< HEAD
                 printf("Selecionado: Insertion Sort\n");
                 insertionsort(vet,tamvetor);
                 printf("Vetor ordenado:\n");
@@ -130,6 +135,10 @@
                 }
                 break;
                 
+=======
+                
+                break;
+>>>>>>> bf39e24a2f2e50c01bd56f9fc5b8b2651edd6574
                 case 2:
                 printf("Selecionado: Bubble Sort\n");
                 Bubblesort(vet, tamvetor);
@@ -210,4 +219,8 @@
         }
     } while (opcao != 5);
     free(vet);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bf39e24a2f2e50c01bd56f9fc5b8b2651edd6574
