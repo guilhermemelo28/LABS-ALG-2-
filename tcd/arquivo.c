@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "arquivo.h"
-#include <string.h>
-
 
 int carregar_arquivo(const char *nome, int **vetor){
     int numero, i = 0;

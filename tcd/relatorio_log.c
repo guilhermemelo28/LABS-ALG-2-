@@ -1,6 +1,5 @@
 #ifndef LOGGER_H
 #define LOGGER_H
-
 #include "relatorio_log.h"
 #include <stdio.h>
 #include <time.h>

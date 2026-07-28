@@ -1,7 +1,6 @@
 //Arquivo com as funções de ordenação e busca.
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h>
 #include "algoritimos.h"
 
 //ALGORITIMOS DE ORDENAÇÃO:
@@ -232,27 +231,6 @@ int buscaBinaria(int *vet, int tamvetor, int elem)
     return -1;
 }
 
-void registrar_log(const char *nivel, const char *modulo, const char *mensagem) {
-    // Abre o arquivo de texto no modo append (adiciona ao final)
-    FILE *arquivo = fopen("log_sistema.txt", "a");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo de log!\n");
-        return;
-    }
 
-    // 1. Obtém e formata a Data e Hora atual
-    time_t agora;
-    time(&agora);
-    struct tm *info = localtime(&agora);
-    char timestamp[20];
-    strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", info);
-
-    // Grava as informações estritamente de forma ordenada no arquivo de texto
-    // Ordem: DATA/HORA -> [NÍVEL] -> [MÓDULO] -> MENSAGEM
-    fprintf(arquivo, "%s [%s] [%s] %s\n", timestamp, nivel, modulo, mensagem);
-
-    // Fecha o arquivo para garantir a gravação física no disco
-    fclose(arquivo);
-}
 
 
