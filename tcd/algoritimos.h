@@ -12,6 +12,7 @@ void insertionsort(int *vet, int tam);
 //quick sort
 void quicksort(int *vet,int l, int r);
 int particiona(int *vet,int l ,int r);
+int mediana_de_tres(int *vet, int l, int r);
 
 //merge sort
 void mergesort(int *vet,int l, int r);

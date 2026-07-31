@@ -36,16 +36,18 @@ void insertionsort(int *vet,int tamvet)
 //QUICKSORT:
 void quicksort(int *vet,int l, int r)
 {
+
     if (l < r)
     {
         int pivo = particiona(vet,l,r);
-
+        
         quicksort(vet,l,pivo - 1);
         quicksort(vet,pivo + 1, r);
     }
 }
 int particiona(int *vet,int l ,int r)
 {
+    mediana_de_tres(vet, l, r);
     int pivo = r; // posso fazer uma funcao para selecionar pivo
     
     int i = l - 1;
@@ -63,6 +65,33 @@ int particiona(int *vet,int l ,int r)
     return i;
 }
 
+int mediana_de_tres(int *vet, int l, int r)
+{
+    if (r - l < 2)
+    {
+        return r;
+    }
+
+    int meio = l + (r - l) / 2;
+
+    if (vet[l] > vet[meio])
+    {
+        troca(vet, l, meio);
+    }
+
+    if (vet[l] > vet[r])
+    {
+        troca(vet, l, r);
+    }
+
+    if (vet[meio] > vet[r])
+    {
+        troca(vet, meio, r);
+    }
+    troca(vet, meio, r);
+
+    return r;
+}
 
 //Funções para fazer o MergeSort
 void mergesort(int *vet,int l, int r)

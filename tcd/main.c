@@ -50,7 +50,7 @@ int main()
                 if (resultado == -1)
                 {
                     registrar_log("ARQUIVO", "FALHA", "ARQUIVO NAO ENCONTRADO");
-                    printf("Arquivo não encontrado! Falha ao carregar o arquivo!\n");
+                    printf("Arquivo nao encontrado! Falha ao carregar o arquivo!\n");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ int main()
             case 2:
                 registrar_log("MENU", "OPCAO", "SELECIONAR BUSCA");
                 printf("Selecione o algoritimo de busca\n");
-                printf("1- Busca Linear\n");
+                    printf("1- Busca Linear\n");
                 printf("2- Busca Binaria\n");
                 printf("3- Sair\n");
                 printf("Digite a opcao:\n");
@@ -251,6 +251,7 @@ int main()
                 break;
 
                 default:
+                registrar_log("MENU", "OPCAO", "SAIR DO PROGRAMA");
                 printf("Saindo...");
                 break;
             }
