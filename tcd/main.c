@@ -4,32 +4,48 @@
 #include "algoritimos.h"
 #include "arquivo.h"
 #include "relatorio_log.h"
+#include <windows.h>
+
 
 int main()
 {
-    registrar_log("INICIO", "INICIALIZACAO", "CODIGO INICIALIZADO");
+    LARGE_INTEGER frequency;
+    LARGE_INTEGER inicio, fim;
+    double elapsedtime;
     int opcao, opbusca, opOrdena, opSalvar; // Opcao = Menu, OpBusca para escolher entre Busca Linear e Binaria, OpOrdena para escolher um dos algoritimos de ordenacao
     int buscarelemento;
     int *vet;
+    int algExecutado = 0;
     int achou = 0;
+    int arquivo_carregado = 0;
     char nomearquivo[100];
     char nomearquivovetor[100];
     int resultado;
     int tamvetor = 1000;
+    typedef struct{
+        char log1[100];
+        char log2[100];
+        char log3[100];
+        char log4[100];
+        char log5[100];
+        char log6[100];
+        char log7[100];
+        char log8[100];
+    }Log;
+    
+    Log relatorioLog;     
 
     vet = (int *)malloc(tamvetor * sizeof(int));
 
     if (vet == NULL)
     {
-        registrar_log("MEMORIA", "ALOCACAO", "MEMORIA NAO ALOCADA");
         return 1;
     }
     else
     {
-        registrar_log("MEMORIA", "ALOCACAO", "MEMORIA ALOCADA");
         do
         {
-            registrar_log("MENU", "OPCAO", "ESCOLHA DA OPCAO");
+            ;
             printf("===MENU===\n");
             printf("1- Carregar Arquivo de texto.\n");
             printf("2-Busca Elemento (Linear ou Binario)\n");
@@ -42,222 +58,289 @@ int main()
             switch (opcao)
             {
             case 1:
-                registrar_log("MENU", "OPCAO", "CARREGAR ARQUIVO");
                 printf("Digite o nome do arquivo no qual voce quer carregar:\n");
                 scanf("%99s", nomearquivo);
 
                 resultado = carregar_arquivo(nomearquivo, &vet);
                 if (resultado == -1)
                 {
-                    registrar_log("ARQUIVO", "FALHA", "ARQUIVO NAO ENCONTRADO");
                     printf("Arquivo nao encontrado! Falha ao carregar o arquivo!\n");
+                    arquivo_carregado = 0;
                 }
                 else
                 {
-                    registrar_log("ARQUIVO", "SUCESSO", "ARQUIVO ENCONTRADO");
                     printf("Sucesso ao carregar arquivos\n");
                     tamvetor = resultado;
+                    arquivo_carregado = 1;
                 }
 
                 break;
-
-            case 2:
-                registrar_log("MENU", "OPCAO", "SELECIONAR BUSCA");
-                printf("Selecione o algoritimo de busca\n");
-                    printf("1- Busca Linear\n");
-                printf("2- Busca Binaria\n");
-                printf("3- Sair\n");
-                printf("Digite a opcao:\n");
-                scanf("%d", &opbusca);
-
-                printf("Digite o elemento que voce deseja buscar:\n");
-                scanf("%d", &buscarelemento);
-
-                switch (opbusca)
-                {
-                case 1:
-                    registrar_log("BUSCA", "TIPO", " SELECIONADO BUSCA LINEAR");
-                    achou = buscaLinear(vet, tamvetor, buscarelemento);
-
-                    if (achou != -1)
-                    {
-                        printf("Elemento encontrado e esta na posicao %d\n", achou + 1);
-                        registrar_log("BUSCA", "LINEAR", " ELEMENTO FOI ENCONTRADO PELA BUSCA LINEAR");
-                    }
-                    else
-                    {
-                        printf("Elemento nao encontrado\n");
-                        registrar_log("BUSCA", "LINEAR", " ELEMENTO  NAO FOI ENCONTRADO PELA BUSCA LINEAR");
-                    }
-                    break;
-
                 case 2:
-                    registrar_log("BUSCA", "TIPO", " SELECIONADO BINARIA");
 
-                    if ((verificaOrdem(vet, tamvetor)) == 1)
+                    if(arquivo_carregado == 0)
                     {
-                        registrar_log("BUSCA", "BINARIA", " VETOR ORDENADO");
-                        printf(" O vetor esta Ordenado!\n");
+                        printf("Necessario carregar um arquivo\n");
+                        break;
+                    }
 
-                        achou = buscaBinaria(vet, tamvetor, buscarelemento);
+                    printf("Digite o elemento que voce deseja buscar:\n");
+                    scanf("%d", &buscarelemento);
+                    printf("Selecione o algoritimo de busca\n");
+                    printf("1- Busca Linear\n");
+                    printf("2- Busca Binaria\n");
+                    printf("3- Sair\n");
+                    printf("Digite a opcao:\n");
+                    scanf("%d", &opbusca);
+
+
+                    switch (opbusca)
+                    {
+                        algExecutado = 1;
+                    case 1:
+                        QueryPerformanceFrequency(&frequency);
+                        QueryPerformanceCounter(&inicio);
+                        
+                        achou = buscaLinear(vet, tamvetor, buscarelemento);
+                        algExecutado = 1;
+
+                        QueryPerformanceCounter(&fim);
+                        elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                        
+                        snprintf(relatorioLog.log1, sizeof(relatorioLog.log1),
+                        "[BUSCA][BUSCALINEAR][TIME: %.16lf ms]", elapsedtime);
                         if (achou != -1)
                         {
-                            printf("Elemento encontrado e esta na posicao %d\n", achou);
-                            registrar_log("BUSCA", "BINARIA", " ELEMENTO FOI ENCONTRADO PELA BUSCA BINARIA");
+                            printf("Elemento encontrado e esta na posicao %d\n", achou + 1);
                         }
                         else
                         {
                             printf("Elemento nao encontrado\n");
-                            registrar_log("BUSCA", "BINARIA", " ELEMENTO FOI ENCONTRADO PELA BUSCA BINARIA");
                         }
-                    }
-                    else
-                    {
-                        printf("Vetor esta desordenado, ordene o vetor!\n");
-                        registrar_log("BUSCA", "BINARIA", "VETOR DESORDENADO");
                         break;
-                    }
-                }
-                break;
 
-            case 3:
-                registrar_log("MENU", "OPCAO", "SELECIONAR ALGORITIMO DE ORDENACAO");
-                printf("Selecione o algoritimo de Ordenacao\n");
-                printf("1- Insert Sort\n");
-                printf("2-Bubble Sort\n");
-                printf("3-Selection Sort\n");
-                printf("4-Merge Sort\n");
-                printf("5- Quick Sort\n");
-                printf("6- Extra\n");
-                printf("7-Sair\n");
+                    case 2:
+                        if ((verificaOrdem(vet, tamvetor)) == 1)
+                        {
+                            printf(" O vetor esta Ordenado!\n");
 
-                printf("Selecione a opcao:\n");
-                scanf("%d", &opOrdena);
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
 
-                switch (opOrdena)
-                {
+                            achou = buscaBinaria(vet, tamvetor, buscarelemento);
+                            algExecutado = 1;
 
-                case 1:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO INSERTION SORT");
-                    printf("Selecionado: Insertion Sort\n");
-                    insertionsort(vet, tamvetor);
-                    printf("Vetor ordenado:\n");
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("BUSCA", "BUSCABINARIA", elapsedtime);
 
-                    for (int i = 0; i < tamvetor; i++)
-                    {
-                        printf("%d\n", vet[i]);
-                    }
-                    break;
-
-                case 2:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO BUBBLE SORT");
-                    printf("Selecionado: Bubble Sort\n");
-                    Bubblesort(vet, tamvetor);
-                    printf("Vetor ordenado:\n");
-
-                    for (int i = 0; i < tamvetor; i++)
-                    {
-                        printf("%d\n", vet[i]);
+                            if (achou != -1)
+                            {
+                                printf("Elemento encontrado e esta na posicao %d\n", achou);
+                            }
+                            else
+                            {
+                                printf("Elemento nao encontrado\n");
+                            }
+                        }
+                        else
+                        {
+                            printf("Vetor esta desordenado, ordene o vetor!\n");
+                            break;
+                        }
                     }
                     break;
 
                 case 3:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO SELECTION SORT");
-                    printf("Selecionado: Selection Sort\n");
-                    selectionsort(vet, tamvetor);
-                    printf("Vetor ordenado:\n");
 
-                    for (int i = 0; i < tamvetor; i++)
+                    if(arquivo_carregado == 0)
                     {
-                        printf("%d\n", vet[i]);
+                        printf("Necessario carregar um arquivo\n");
+                        break;
                     }
-                    break;
+                    printf("Selecione o algoritimo de Ordenacao\n");
+                    printf("1- Insert Sort\n");
+                    printf("2-Bubble Sort\n");
+                    printf("3-Selection Sort\n");
+                    printf("4-Merge Sort\n");
+                    printf("5- Quick Sort\n");
+                    printf("6- Extra\n");
+                    printf("7-Sair\n");
 
-                case 4:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO MERGE SORT");
-                    printf("Selecionado: Merge Sort\n");
-                    mergesort(vet, 0, tamvetor - 1);
-                    printf("Vetor ordenado:\n");
+                    printf("Selecione a opcao:\n");
+                    scanf("%d", &opOrdena);
 
-                    for (int i = 0; i < tamvetor; i++)
+                    switch (opOrdena)
                     {
-                        printf("%d\n", vet[i]);
-                    }
-                    break;
+                    
+                    case 1:
+                        printf("Selecionado: Insertion Sort\n");
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
 
-                case 5:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO QUICK SORT");
-                    printf("Selecionado: Quick Sort\n");
+                            insertionsort(vet, tamvetor);
+                            algExecutado = 1;
 
-                    quicksort(vet, 0, tamvetor - 1);
-                    printf("Vetor ordenado:\n");
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "INSERTIONSORT", elapsedtime);
+                        
+                        printf("Vetor ordenado:\n");
 
-                    for (int i = 0; i < tamvetor; i++)
-                    {
-                        printf("%d\n", vet[i]);
-                    }
-                    break;
-
-                case 6:
-                    registrar_log("ORDENACAO", "OPCAO", "SELECIONADO EXTRA: INTRO SORT");
-                    printf("Selecionado Extra: IntroSort\n");
-                    break;
-
-                }
-                
-                
-                if( verificaOrdem(vet, tamvetor) == 1)
-                {
-                    registrar_log("ORDENACAO", "SUCESSO", "VETOR ORDENADO");
-                    printf("Vetor foi ordenado com sucesso!\n");
-
-                }
-
-                if (opOrdena >= 1 && opOrdena <= 6)
-                {
-                    registrar_log("ARQUIVO ORDENACAO", "OPCAO", "SALVAR ARQUIVO");
-                    printf("Deseja salvar o vetor ordenado em um arquivo separado?\n");
-                    printf("1- Sim\n");
-                    printf("2- Nao\n");
-                    scanf("%d", &opSalvar);
-
-                    if (opSalvar == 1)
-                    {
-                        printf("Digite o nome do arquivo para salvar:\n");
-                        scanf("%99s", nomearquivovetor);
-
-                        resultado = salvar_vetor(nomearquivovetor, vet, tamvetor);
-
-                        if (resultado == -1)
+                        for (int i = 0; i < tamvetor; i++)
                         {
-                            printf("Erro ao salvar arquivo!\n");
+                            printf("%d\n", vet[i]);
+                        }
+                        break;
+
+                    case 2:
+                        printf("Selecionado: Bubble Sort\n");
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
+
+                            Bubblesort(vet, tamvetor);
+                            algExecutado = 1;
+
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "BUBBLESORT", elapsedtime);
+                        printf("Vetor ordenado:\n");
+
+                        for (int i = 0; i < tamvetor; i++)
+                        {
+                            printf("%d\n", vet[i]);
+                        }
+                        break;
+
+                    case 3:
+                        printf("Selecionado: Selection Sort\n");
+
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
+
+                            selectionsort(vet, tamvetor);
+                            algExecutado = 1;
+
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "SELECTIONSORT", elapsedtime);
+                        
+                        
+                        printf("Vetor ordenado:\n");
+
+                        for (int i = 0; i < tamvetor; i++)
+                        {
+                            printf("%d\n", vet[i]);
+                        }
+                        break;
+
+                    case 4:
+
+                        printf("Selecionado: Merge Sort\n");
+
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
+
+                            mergesort(vet, 0, tamvetor - 1);
+                            algExecutado = 1;
+
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "SELECTIONSORT", elapsedtime);
+                        
+                        printf("Vetor ordenado:\n");
+
+                        for (int i = 0; i < tamvetor; i++)
+                        {
+                            printf("%d\n", vet[i]);
+                        }
+                        break;
+
+                    case 5:
+                        printf("Selecionado: Quick Sort\n");
+
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
+
+                            quicksort(vet, 0, tamvetor - 1);
+                            algExecutado = 1;
+
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "SELECTIONSORT", elapsedtime);
+                        
+                        printf("Vetor ordenado:\n");
+
+                        for (int i = 0; i < tamvetor; i++)
+                        {
+                            printf("%d\n", vet[i]);
+                        }
+                        break;
+
+                    case 6:
+                        printf("Selecionado Extra: IntroSort\n");
+                        algExecutado = 1;
+                        break;
+                    }
+
+                    if (verificaOrdem(vet, tamvetor) == 1)
+                    {
+                        printf("Vetor foi ordenado com sucesso!\n");
+                    }
+
+                    if (opOrdena >= 1 && opOrdena <= 6)
+                    {
+                        printf("Deseja salvar o vetor ordenado em um arquivo separado?\n");
+                        printf("1- Sim\n");
+                        printf("2- Nao\n");
+                        scanf("%d", &opSalvar);
+
+                        if (opSalvar == 1)
+                        {
+                            printf("Digite o nome do arquivo para salvar:\n");
+                            scanf("%99s", nomearquivovetor);
+
+                            resultado = salvar_vetor(nomearquivovetor, vet, tamvetor);
+
+                            if (resultado == -1)
+                            {
+                                printf("Erro ao salvar arquivo!\n");
+                            }
+                            else
+                            {
+                                printf("Arquivo salvo com sucesso!\n");
+                            }
                         }
                         else
                         {
-                            registrar_log("ARQUIVO ORDENACAO", "OPCAO", "ARQUIVO SALVO");
-                            printf("Arquivo salvo com sucesso!\n");
+                            printf("Arquivo nao foi salvado!\n");
                         }
                     }
+                    break;
+                case 4:
+                    if(arquivo_carregado == 0 && algExecutado == 0)
+                    {
+                        printf("Necessario carregar um arquivo e/ou executar algoritimo\n");
+                        break;
+                    }
+                    printf("Arqivo de log gerado!\n");
+                    
+                    break;
+
+                    
+                    default:
+                    
+                    if(opcao == 5)
+                    {
+                        free(vet);
+                        printf("Saindo...\n");
+                        break;
+                    }
+                    
                     else
                     {
-                        registrar_log("ARQUIVO ORDENACAO", "OPCAO", "ARQUIVO NAO SALVO");
-                        printf("Arquivo nao foi salvado!\n");
+                        printf("Opcao invalida!\n");
                     }
-                }
-                break;
-                case 4:
-                printf("Arqivo de log gerado!\n");
-                registrar_log("MENU", "OPCAO", "ARQUIVO DE LOG GERADO");
-                break;
-
-                default:
-                registrar_log("MENU", "OPCAO", "SAIR DO PROGRAMA");
-                printf("Saindo...");
-                break;
             }
-
-        } while (opcao != 5);
-        registrar_log("FINALIZACAO", "FINAL", "ARQUIVO ENCERRADO");
-        free(vet);
+        }while (opcao != 5);
     }
 }
