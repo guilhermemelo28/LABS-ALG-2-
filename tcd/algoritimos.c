@@ -208,24 +208,30 @@ void selectionsort(int *vet,int tam)
 //Introsort:
 void heapify_intervalo(int *vet, int l, int tamanho_heap, int raiz)
 {
-    int maior = raiz;
-    int esquerda = 2 * raiz + 1;
-    int direita = 2 * raiz + 2;
-
-    if (esquerda < tamanho_heap && vet[l + esquerda] > vet[l + maior])
+    while (1)
     {
-        maior = esquerda;
-    }
+        int maior = raiz;
+        int esquerda = 2 * raiz + 1;
+        int direita = 2 * raiz + 2;
 
-    if (direita < tamanho_heap && vet[l + direita] > vet[l + maior])
-    {
-        maior = direita;
-    }
+        if (esquerda < tamanho_heap && vet[l + esquerda] > vet[l + maior])
+        {
+            maior = esquerda;
+        }
 
-    if (maior != raiz)
-    {
+        if (direita < tamanho_heap && vet[l + direita] > vet[l + maior])
+        {
+            maior = direita;
+        }
+
+        if (maior == raiz)
+        {
+            break;
+        }
+
         troca(vet, l + raiz, l + maior);
-        heapify_intervalo(vet, l, tamanho_heap, maior);
+
+        raiz = maior;
     }
 }
 
