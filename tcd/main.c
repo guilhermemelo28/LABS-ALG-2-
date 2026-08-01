@@ -278,7 +278,24 @@ int main()
 
                     case 6:
                         printf("Selecionado Extra: IntroSort\n");
-                        algExecutado = 1;
+
+                            QueryPerformanceFrequency(&frequency);
+                            QueryPerformanceCounter(&inicio);
+
+                            introsort(vet, tamvetor);
+                            algExecutado = 1;
+
+                            QueryPerformanceCounter(&fim);
+                            elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
+                            time_executing_log("ORDENACAO", "INTROSORT", elapsedtime);
+                        
+                        
+                        printf("Vetor ordenado:\n");
+
+                        for (int i = 0; i < tamvetor; i++)
+                        {
+                            printf("%d\n", vet[i]);
+                        }
                         break;
                     }
 
