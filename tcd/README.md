@@ -19,7 +19,7 @@ O programa possui um menu interativo com as seguintes funcionalidades:
 - Ordenação utilizando cinco algoritmos diferentes;
 - Exibição do vetor ordenado no terminal;
 - Salvamento do vetor ordenado em um novo arquivo;
-- Registro automático das operações e tempo de execução dos algoritimos em um arquivo de log;
+- Registro automático do tempo de execução dos algoritimos em um arquivo de log;
 - Alocação dinâmica de memória para arquivos com diferentes quantidades de números.
 
 ## Algoritmos implementados
@@ -110,7 +110,7 @@ Esse algoritimo faz uso de três algoritimos: Quick Sort, Heap Sort e o Insertio
 - "arquivo.h": contém os protótipos das funções de manipulação de arquivos;
 - "relatorio_log.c": contém a função responsável pelo registro de logs;
 - "relatorio_log.h": contém o protótipo da função de log;
-- "log_sistema.txt": é criado automaticamente durante a execução do programa;
+- "log_sistema.txt": é criado quando o usuário seleciona a opção de gerar log ;
 - "README.md": documentação do projeto.
 
 ## Carregar Arquivo 
@@ -214,61 +214,9 @@ Cada linha contém:
 Exemplo:
 
 2026-07-31 13:40:20 [INICIO] [INICIALIZACAO] CODIGO INICIALIZADO
-2026-07-31 13:40:25 [ARQUIVO] [SUCESSO] ARQUIVO ENCONTRADO
-2026-07-31 13:40:30 [ORDENACAO] [OPCAO] SELECIONADO QUICK SORT
+2026-07-31 13:40:30 [ORDENACAO] [INTROSORT] [TEMPO DE EXECUCAO 0.0598000000000000 ms]
 2026-07-31 13:40:35 [FINALIZACAO] [FINAL] ARQUIVO ENCERRADO
 
 
-A opção "4- Gerar relatorio(Log)" registra uma nova ocorrência no log. Entretanto, o arquivo de log já é criado e atualizado automaticamente durante toda a execução.
+A opção "4- Gerar relatorio(Log)" registra uma nova ocorrência no log. Entretanto, o arquivo de log já é criado e atualizado automaticamente quando o usuário seleciona a opcao Gerar relatorio(Log)
 
-## Exemplo completo de utilização
-
-Arquivo "decrescente_1000.txt":
-
-1000
-999
-998
-997
-996
-995
-994
-993
-992
-991
-990
-...
-
-
-Execução:
-
-===MENU===
-1- Carregar Arquivo de texto.
-2- Busca Elemento (Linear ou Binario)
-3- Ordenar dados: Insert, Bubble, Selection, Merge, Quick, Extra
-4- Gerar relatorio(Log)
-5- Sair
-
-Digite a opcao
-1
-
-Digite o nome do arquivo no qual voce quer carregar:
-
-por exemplo:
-
-decrescente_1000.txt
-
-Sucesso ao carregar arquivos
-
-Em seguida, selecione a opção "3" e escolha o Quick Sort. O resultado será:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-...

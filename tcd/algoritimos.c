@@ -5,9 +5,9 @@
 
 //ALGORITIMOS DE ORDENAÇÃO:
 
-//Verifica ordenação
+//Verifica ordenação: Algoritimo para verificar se esta ordenado
 int verificaOrdem(int vet[], int tam){
-    int i, j;
+    int i;
     for(i = 0; i < (tam - 1) ; i++)
     {
             if(vet[i] > vet[ i + 1])
