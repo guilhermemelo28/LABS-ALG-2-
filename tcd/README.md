@@ -76,6 +76,20 @@ Esse algoritimo faz uso de três algoritimos: Quick Sort, Heap Sort e o Insertio
 | Busca Linear   | O(1)        | O(n)       | O(n)      | O(1)                |
 | Busca Binária  | O(1)        | O(log n)   | O(log n)  | O(1)                |
 
+## Tempo de execução com o arquivo: desordenado_1000.txt
+
+ [BUSCA][BUSCALINEAR][MEDIADETEMPO:0.0009210000000000ms] 
+ [BUSCA][BUSCABINARIA][MEDIADETEMPO:0.0001340000000000ms] 
+ [ORDENACAO][INSERTION][MEDIADETEMPO:0.4559420000000001ms] 
+ [ORDENACAO][BUBLESORT][MEDIADETEMPO:1.7307720000000004ms] 
+ [ORDENACAO][MERGESORT][MEDIADETEMPO:0.0000000000000000ms] 
+ [ORDENACAO][MERGESORT][MEDIADETEMPO:0.3179650000000001ms] 
+ [ORDENACAO][QUICKSORT][MEDIADETEMPO:0.0746020000000000ms] 
+ [ORDENACAO][INTROSORT][MEDIADETEMPO:0.0474890000000000ms] 
+
+
+
+
 ## Estrutura do projeto
 
 ./tcd
@@ -198,7 +212,7 @@ A memória utilizada pelo vetor é liberada antes do encerramento.
 
 ## Sistema de logs
 
-O programa registra automaticamente em forma de relatorio as principais informações operacionais no arquivo e o tempo de execução dos algoritimos de ordenação e de busca:
+O programa registra automaticamente em forma de relatorio o tempo de execução dos algoritimos de ordenação e de busca:
 
 log_sistema.txt
 
@@ -206,16 +220,12 @@ O arquivo é criado na pasta em que o programa está sendo executado. Os novos r
 
 Cada linha contém:
 
-- Data e hora;
 - Nível ou categoria do evento;
 - Módulo do sistema;
-- Mensagem descritiva.
+- Tempo de Execução medio .
 
 Exemplo:
-
-2026-07-31 13:40:20 [INICIO] [INICIALIZACAO] CODIGO INICIALIZADO
-2026-07-31 13:40:30 [ORDENACAO] [INTROSORT] [TEMPO DE EXECUCAO 0.0598000000000000 ms]
-2026-07-31 13:40:35 [FINALIZACAO] [FINAL] ARQUIVO ENCERRADO
+ [ORDENACAO] [INTROSORT] [TEMPO DE EXECUCAO 0.0598000000000000 ms]
 
 
 A opção "4- Gerar relatorio(Log)" registra uma nova ocorrência no log. Entretanto, o arquivo de log já é criado e atualizado automaticamente quando o usuário seleciona a opcao Gerar relatorio(Log)

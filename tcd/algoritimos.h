@@ -19,7 +19,7 @@ void mergesort(int *vet,int l, int r);
 void merge(int *vet, int l, int meio, int r);
 
 //Bubble sort
-void Bubblesort (int *vet, int n);
+void Bubblesort (int *vet, int tam);
 
 //Selection Sort
 void selectionsort(int *vet,int tam);
