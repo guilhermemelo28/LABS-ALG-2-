@@ -196,7 +196,7 @@ int main()
                             }
                         
                             snprintf(relatorioLog.log3, sizeof(relatorioLog.log3),
-                            "[ORDENACAO][INSERTION][MEDIADETEMPO:%.16lfms]", (somaTempo / 100));
+                            "[ORDENACAO][INSERTIONSORT][MEDIADETEMPO:%.16lfms]", (somaTempo / 100));
                         printf("Vetor ordenado:\n");
 
                         for (int i = 0; i < tamvetor; i++)
@@ -223,7 +223,7 @@ int main()
                             somaTempo += elapsedtime;
                             }
                             snprintf(relatorioLog.log4, sizeof(relatorioLog.log4),
-                            "[ORDENACAO][BUBLESORT][MEDIADETEMPO:%.16lfms]", (somaTempo/100));
+                            "[ORDENACAO][BUBBLESORT][MEDIADETEMPO:%.16lfms]", (somaTempo/100));
                         printf("Vetor ordenado:\n");
                         printf("Vetor ordenado:\n");
 
@@ -241,15 +241,14 @@ int main()
                                 copiavetor(vet, &vettemp, tamvetor);
                                 QueryPerformanceCounter(&inicio);
 
-                                selectionsort(vet, tamvetor);
+                                selectionsort(vettemp, tamvetor);
                                 algExecutado = 1;
 
                                 QueryPerformanceCounter(&fim);
                                 elapsedtime = (fim.QuadPart - inicio.QuadPart) * 1000.0 / frequency.QuadPart;
                             }      
                             snprintf(relatorioLog.log5, sizeof(relatorioLog.log5),
-                            "[ORDENACAO][MERGESORT][MEDIADETEMPO:%.16lfms]", (somaTempo/100));
-                               
+                            "[ORDENACAO][SELECTIONSORT][MEDIADETEMPO:%.16lfms]", (somaTempo/100));
                         
                         printf("Vetor ordenado:\n");
 
@@ -268,7 +267,7 @@ int main()
                                 copiavetor(vet, &vettemp, tamvetor);
                                 QueryPerformanceCounter(&inicio);
 
-                                mergesort(vet, 0, tamvetor - 1);
+                                mergesort(vettemp, 0, tamvetor - 1);
                                 algExecutado = 1;
 
                                 QueryPerformanceCounter(&fim);
@@ -293,7 +292,7 @@ int main()
                                 copiavetor(vet, &vettemp, tamvetor);
                                 QueryPerformanceCounter(&inicio);
 
-                                quicksort(vet, 0, tamvetor - 1);
+                                quicksort(vettemp, 0, tamvetor - 1);
                                 algExecutado = 1;
 
                                 QueryPerformanceCounter(&fim);
@@ -340,7 +339,7 @@ int main()
                         break;
                     }
 
-                    if (verificaOrdem(vet, tamvetor) == 1)
+                    if (verificaOrdem(vettemp, tamvetor) == 1)
                     {
                         printf("Vetor foi ordenado com sucesso!\n");
                     }
@@ -357,7 +356,7 @@ int main()
                             printf("Digite o nome do arquivo para salvar:\n");
                             scanf("%99s", nomearquivovetor);
 
-                            resultado = salvar_vetor(nomearquivovetor, vet, tamvetor);
+                            resultado = salvar_vetor(nomearquivovetor, vettemp, tamvetor);
 
                             if (resultado == -1)
                             {
