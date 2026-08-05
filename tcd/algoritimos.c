@@ -19,7 +19,6 @@ void Bubblesort (int *vet, int tam);
 //Selection Sort
 void selectionsort(int *vet,int tam);
 
-
 //merge sort
 void mergesort(int *vet,int l, int r);
 void merge(int *vet, int l, int meio, int r);
@@ -414,7 +413,7 @@ void heapify_intervalo(int *vet, int l, int tamanho_heap, int raiz)
 
         raiz = maior; // Continua na posicao aonde o elemento desceu
     }
-}
+} 
 //
 
 //Função Usada no: Selection Sort, BubbleSort, Quicksort e no IntroSort

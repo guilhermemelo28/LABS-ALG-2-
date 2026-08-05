@@ -374,9 +374,9 @@ int main()
                     }
                     break;
                 case 4:
-                    if(arquivo_carregado == 0 && algExecutado == 0)
+                    if(algExecutado == 0)
                     {
-                        printf("Necessario carregar um arquivo e/ou executar algoritimo\n");
+                        printf("Necessario executar algoritimo\n");
                         break;
                     }else{
                         printf("Arqivo de log gerado!\n");
